@@ -1,10 +1,10 @@
 @extends('master_admin')
 @section('title', 'Kelola Booth')
 @section('sidebar')
-    @include('includes.sidebar')
+    @include('includes.admins.sidebar')
 @endsection
 @section('navbar')
-    @include('includes.navbar')
+    @include('includes.admins.navbar')
 @endsection
 @section('footer', '')
 @section('content')

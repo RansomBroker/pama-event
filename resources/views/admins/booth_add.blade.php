@@ -1,10 +1,10 @@
 @extends('master_admin')
 @section('title', 'Tambah Booth Baru')
 @section('sidebar')
-    @include('includes.sidebar')
+    @include('includes.admins.sidebar')
 @endsection
 @section('navbar')
-    @include('includes.navbar')
+    @include('includes.adminsnavbar')
 @endsection
 @section('footer', '')
 @section('content')

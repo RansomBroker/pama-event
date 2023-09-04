@@ -11,7 +11,7 @@ class EventController extends Controller
 {
     public function index()
     {
-
+        return view('main.main');
     }
 
     public function boothRedeemPageView($booth)

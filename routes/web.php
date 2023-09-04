@@ -57,6 +57,3 @@ Route::controller(BoothController::class)->name('booth.')->group(function () {
     Route::get('/booth/{booth}', 'boothVisitorView')->name('visitor.view');
 });
 
-Route::get('/', function () {
-   return view('main.main');
-});

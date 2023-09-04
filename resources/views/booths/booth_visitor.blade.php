@@ -1,10 +1,10 @@
 @extends('master_admin')
 @section('title', 'Visitor Booth '. $booth->name)
 @section('sidebar')
-    @include('includes.booth_sidebar')
+    @include('includes.admins.booth_sidebar')
 @endsection
 @section('navbar')
-    @include('includes.booth_navbar')
+    @include('includes.admins.booth_navbar')
 @endsection
 @section('content')
     <h2>Data Redeem</h2>
