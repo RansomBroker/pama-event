@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master_admin')
 @section('title', 'Login Admin')
 @section('sidebar', '')
 @section('navbar', '')
