@@ -47,7 +47,7 @@
 
                                         {{-- username --}}
                                         <div class="form-group mb-3">
-                                            <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror"
+                                            <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror rounded-pill"
                                                    placeholder="Username" name="username">
                                             @error('username')
                                             <div class="invalid-feedback">
@@ -58,7 +58,7 @@
 
                                         {{-- password --}}
                                         <div class="form-group mb-3">
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror rounded-pill"
                                                    placeholder="Password" name="password">
                                             @error('password')
                                             <div class="invalid-feedback">
