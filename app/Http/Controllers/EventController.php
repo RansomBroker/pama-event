@@ -11,7 +11,12 @@ class EventController extends Controller
 {
     public function index()
     {
-        return view('main.main');
+        return view('mains.main');
+    }
+
+    public function play()
+    {
+        return view('mains.play');
     }
 
     public function boothRedeemPageView($booth)

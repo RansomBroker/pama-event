@@ -12,7 +12,7 @@
             </div>
             {{-- button --}}
             <div class="col-12 d-flex flex-column justify-content-end align-items-center mb-5">
-                <a href="" class="btn bg-event-primary text-white fw-bold px-5 rounded-pill mb-2"><i class='bx bx-scan text-warning'></i> Mulai Telusuri</a>
+                <a href="{{ route('event.play') }}" class="btn bg-event-primary text-white fw-bold px-5 rounded-pill mb-2"><i class='bx bx-scan text-warning'></i> Mulai Telusuri</a>
                 <div class="d-flex justify-content-around w-100">
                     <button type="button" class="btn-map btn btn-warning rounded-circle"  data-bs-toggle="modal" data-bs-target="#modal-map"><img src="{{ asset('assets/img/map-icon.png') }}" width="18" class="mb-1"></button>
                     <button class="btn btn-warning rounded-circle ms-5" data-bs-target="#modal-info" data-bs-toggle="modal"><img src="{{ asset('assets/img/info-icon.png') }}" alt="info" width="18" class="mb-1"></button>

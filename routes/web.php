@@ -46,6 +46,7 @@ Route::middleware('auth.check')->group(function () {
     // event controller
     Route::controller(EventController::class)->name('event.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/play', 'play')->name('play');
         Route::get('/redeem/{booth}', 'boothRedeemPageView')->name('booth.redeem.view');
         Route::post('/redeem/submit/{booth}', 'boothRedeem')->name('booth.redeem');
         Route::get('/redeem/success/{booth}', 'boothRedeemSuccess')->name('booth.redeem.success');
