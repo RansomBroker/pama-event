@@ -4,7 +4,7 @@
     @include('includes.admins.sidebar')
 @endsection
 @section('navbar')
-    @include('includes.adminsnavbar')
+    @include('includes.admins.navbar')
 @endsection
 @section('footer', '')
 @section('content')
