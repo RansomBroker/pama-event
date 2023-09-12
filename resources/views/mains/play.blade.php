@@ -1,21 +1,41 @@
-@extends('master_event')
-@section('title', 'Play Event')
-@section('content')
-    <div class="vh-100 vw-100 row justify-content-center bg-event-primary m-0">
-        <div class="bg-white col-lg-4 col-12 col-md-5 row">
-            <a-scene mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/card.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-                <a-assets>
-                    <img id="card" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/card.png" />
-                    <a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
-                </a-assets>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
 
-                <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-                <a-entity mindar-image-target="targetIndex: 0">
-                    <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-                    <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
-                </a-entity>
-            </a-scene>
-        </div>
-    </div>
+    <title>The AR Journey</title>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+    <script>
+        AFRAME.registerComponent("mylink", {
+            init: function() {
+                this.el.addEventListener("click", (e) => {
+                    window.location = this.data.href;
+                })
+            }
+        })
+    </script>
 
-@endsection
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+<a-scene cursor="rayOrigin: mouse" embedded arjs='trackingMethod: best;'>
+    <a-assets>
+        <img id="redeem" src="assets/reedem.png">
+    </a-assets>
+    <a-marker preset="hiro">
+        <a-plane position="0 0 0.8" color="transparent" opacity="0" width="2" height="0.3" rotation="-90 0 0">
+            <a-entity
+                position="0 0 0"
+                scale="0.05 0.05 0.05"
+                gltf-model="https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf">
+                <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
+            </a-entity>
+            <a-image src="assets/reedem.png" width="2" height="0.5" mylink="href: https://pama.evorty.id/redeem/booth-1;" position="0 -0.5 0"
+                     rotation="0 0 0"></a-image>
+    </a-marker>
+    <a-entity camera></a-entity>
+</a-scene>
+</body>
+</html>

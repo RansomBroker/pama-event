@@ -19,6 +19,35 @@ class EventController extends Controller
         return view('mains.play');
     }
 
+    public function leaderboardGet()
+    {
+        $leaderboardCollection = collect(RedeemCode::with(['user', 'booth'])->get());
+        $leaderboardGroup = $leaderboardCollection->groupBy('user_id');
+        $sortedLeaderBoards = $leaderboardGroup->sortByDesc(function ($data) {
+            return count($data);
+        });
+        $leaderboards = [];
+        $i = 0;
+        foreach ($sortedLeaderBoards as $leaderboard) {
+            $leaderboards[$i] = $leaderboard;
+            $i++;
+        }
+        return response()->json($leaderboards);
+    }
+
+    public function leaderboard()
+    {
+        $leaderboardCollection = collect(RedeemCode::with(['user', 'booth'])->get());
+        $leaderboards = $leaderboardCollection->groupBy('user_id');
+        return view('mains.leaderboard', ['leaderboards' => $leaderboards]);
+    }
+
+    public function leaderboardUserHistory($id)
+    {
+        $userHistory = collect(RedeemCode::with(['user', 'booth'])->where('user_id', $id)->get())->groupBy('user_id');
+        return response()->json($userHistory);
+    }
+
     public function boothRedeemPageView($booth)
     {
         $booth = Booth::where('slug', $booth)->first();

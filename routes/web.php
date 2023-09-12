@@ -47,6 +47,9 @@ Route::middleware('auth.check')->group(function () {
     Route::controller(EventController::class)->name('event.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/play', 'play')->name('play');
+        Route::get('/leaderboard', 'leaderboard')->name('leaderboard')->withoutMiddleware('auth.check');
+        Route::get('/leaderboard/get', 'leaderboardGet')->name('leaderboard.get')->withoutMiddleware('auth.check');
+        Route::get('/leaderboard/user/history/{id}', 'leaderboardUserHistory')->name('leaderboard.user.history')->withoutMiddleware('auth.check');
         Route::get('/redeem/{booth}', 'boothRedeemPageView')->name('booth.redeem.view');
         Route::post('/redeem/submit/{booth}', 'boothRedeem')->name('booth.redeem');
         Route::get('/redeem/success/{booth}', 'boothRedeemSuccess')->name('booth.redeem.success');
@@ -57,4 +60,6 @@ Route::middleware('auth.check')->group(function () {
 Route::controller(BoothController::class)->name('booth.')->group(function () {
     Route::get('/booth/{booth}', 'boothVisitorView')->name('visitor.view');
 });
+
+
 
