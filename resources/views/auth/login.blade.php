@@ -1,6 +1,7 @@
 @extends('master_event')
 @section('title', 'Login Pama Event')
 @section('content')
+
     {{-- icon --}}
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -14,77 +15,96 @@
         </symbol>
     </svg>
 
-    <div class="vh-100 vw-100 row justify-content-center bg-event-primary m-0">
-        <div class="bg-white col-lg-4 col-12 col-md-5">
-            <div class="vh-100 d-flex justify-content-center align-items-center">
-                <div class="card rounded-3 shadow-lg my-5 bg-event-primary">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    {{-- logo --}}
-                                    <div class="d-flex justify-content-center">
-                                        <img src="https://placehold.co/96x96" alt="logo" width="96" class="mb-3">
-                                    </div>
-                                    {{-- login --}}
-                                    <div class="text-center">
-                                        <h1 class="h4 text-warning mb-4 fw-bold">LOGIN PAMA EVENT</h1>
-                                    </div>
+    <div class="min-vh-100 vw-100 row justify-content-center bg-event-primary m-0">
+        {{-- box --}}
+        <div class="col-lg-4 col-12 col-md-5 p-0" >
+            <div class="position-relative">
+                {{-- form --}}
+                <div class="vh-100 w-100 d-flex justify-content-center align-items-center position-absolute z-20">
+                    {{--form--}}
+                    <div class="card rounded-3 shadow-lg my-5 bg-event-primary">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="p-5">
+                                        {{--logo--}}
+                                        <div class="d-flex justify-content-center">
+                                            <img src="https://placehold.co/96x96" alt="logo" width="96" class="mb-3">
+                                        </div>
+                                        {{--login--}}
+                                        <div class="text-center">
+                                            <h1 class="h4 text-warning mb-4 fw-bold">LOGIN PAMA EVENT</h1>
+                                        </div>
 
-                                    @if($status = Session::get('status'))
-                                        @if($message = Session::get('message'))
-                                            <div class="alert alert-{{ $status }} alert-dismissible fade show" role="alert">
-                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                                                {{ $message }}
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            </div>
+                                        @if($status = Session::get('status'))
+                                            @if($message = Session::get('message'))
+                                                <div class="alert alert-{{ $status }} alert-dismissible fade show" role="alert">
+                                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                                    {{ $message }}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                                            @endif
                                         @endif
-                                    @endif
 
-                                    <form class="user" method="POST" action="{{ route('user.login.process') }}">
-                                        @csrf
+                                        <form class="user" method="POST" action="{{ route('user.login.process') }}">
+                                            @csrf
 
-                                        {{-- username --}}
-                                        <div class="form-group mb-3">
-                                            <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror rounded-pill"
-                                                   placeholder="Username" name="username">
-                                            @error('username')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                            {{--username--}}
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror rounded-pill"
+                                                       placeholder="Username" name="username">
+                                                @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @endif
                                             </div>
-                                            @endif
-                                        </div>
 
-                                        {{-- password --}}
-                                        <div class="form-group mb-3">
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror rounded-pill"
-                                                   placeholder="Password" name="password">
-                                            @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                            {{--password--}}
+                                            <div class="form-group mb-3">
+                                                <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror rounded-pill"
+                                                       placeholder="Password" name="password">
+                                                @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @endif
                                             </div>
-                                            @endif
-                                        </div>
 
-                                        {{-- forget & register--}}
-                                        <div class="text-center mb-3">
-                                            <a class="small text-warning fw-bold" href="forgot-password.html">Lupa Password ?</a>
-                                            <span>|</span>
-                                            <a class="small text-warning fw-bold" href="{{ route('user.register.view') }}">Registrasi Event</a>
-                                        </div>
-                                        <div class="d-grid">
-                                            <button class="btn btn-warning btn-user btn-block text-event-primary fw-bold">
-                                                Login
-                                            </button>
-                                        </div>
-                                    </form>
+                                            {{--forget & register--}}
+                                            <div class="text-center mb-3">
+                                                <a class="small text-warning fw-bold" href="forgot-password.html">Lupa Password ?</a>
+                                                <span>|</span>
+                                                <a class="small text-warning fw-bold" href="{{ route('user.register.view') }}">Registrasi Event</a>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-warning btn-user btn-block text-event-primary fw-bold">
+                                                    Login
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- bg --}}
+                <div class="position-absolute">
+                    <img src="{{ asset('assets/img/gameplay/bg.jpg') }}" alt="" class="img-fluid min-vh-100">
+                </div>
+                {{-- parralax effect--}}
+                <div class="position-absolute">
+                    {{--<img src="{{ asset('assets/img/gameplay/bglayer2.png') }}" alt="" class="img-fluid min-vh-100">--}}
+                </div>
             </div>
         </div>
     </div>
+@endsection
+@section('custom-js')
+    <script>
+        var scene = document.getElementById('scene');
+        var parallax = new Parallax(scene);
+    </script>
 @endsection

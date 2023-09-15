@@ -1,28 +1,29 @@
 @extends('master_event')
 @section('title', 'Pama Event')
 @section('content')
-    <div class="container-fluid m-0 d-flex justify-content-center">
-        <div class="bg-white col-lg-6 col-12 col-md-5 row ">
-            <div class="col-12 d-flex mt-3 flex-column align-items-center">
-
-                <div class="bg-event-primary px-4 py-2">
-                    <span class="text-warning fw-bold fs-4">Leaderboard</span>
+    <div class="min-vh-100 container-fluid m-0 p-0 row justify-content-center">
+        <div class="col-lg-8 col-12 col-md-8 d-flex justify-content-center position-absolute top-15 start-50 translate-middle-x">
+            <div class="w-100 card-leaderboard card-body overflow-visible">
+                {{-- leaderboard img--}}
+                <img src="{{ asset('assets/img/leaderboard/leaderboard.png') }}" class="position-absolute top--29 start-50 translate-middle" alt="" width="256px">
+                {{-- acc --}}
+                <div class="w-100 d-flex justify-content-between mb-3">
+                    <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
+                    <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
                 </div>
-
-                {{-- Leaderboard --}}
-                <table class="table table-hover table-bordered table-striped mt-5">
+                {{-- table --}}
+                <table class="table table-striped">
                     <thead>
-                        <tr class="text-center">
-                            <th scope="col">Nama</th>
-                            <th scope="col">Point</th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th class="text-center text-white">Nama</th>
+                        <th class="text-center text-white">Point</th>
+                        <th class="text-center text-white"><span class="text-zero">asdf</span></th>
+                    </tr>
                     </thead>
                     <tbody class="leaderboard-data">
 
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
@@ -91,12 +92,16 @@
                     url: '/leaderboard/get',
                     success: function (data) {
                         let html = ``;
+                        let i = 1;
                         data.forEach((leaderboardGroup) => {
                             html +=`
                                    <tr>
-                                        <th>${leaderboardGroup[0].user.name}</th>
-                                        <td class="text-center">${leaderboardGroup.length}</td>
-                                        <td class="text-center"><button class="btn-history btn bg-event-primary text-warning" data-id="${leaderboardGroup[0].user_id}">Riwayat</button></td>
+                                       <td class="text-white fw-bold border-white bg-table-wave-long-desktop">
+                                            <span class="text-white px-3 pt-2 pb-3 fw-bold bg-point me-2">${i++}</span>
+                                            ${leaderboardGroup[0].user.name}
+                                       </td>
+                                       <td class="text-center text-white border-white bg-table-wave-short-desktop">${leaderboardGroup.length} <img src="{{ asset('assets/img/leaderboard/diamond.png') }}" alt="" width="18px"></td>
+                                       <td class="text-center border-white bg-table-wave-long-desktop"><button class="btn-history btn bg-event-primary text-warning" data-id="${leaderboardGroup[0].user_id}">Riwayat</button></td>
                                    </tr>
                                 `
                             $('.leaderboard-data').html(html)

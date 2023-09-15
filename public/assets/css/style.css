@@ -62,3 +62,106 @@
 .vw-99 {
     height: 99vh !important;
 }
+
+.bg-gameplay {
+    background-image: url("/assets/img/gameplay/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.z-0{
+    z-index: 0 !important;
+}
+
+.z-10{
+    z-index: 10 !important;
+}
+
+.z-20{
+    z-index: 20 !important;
+}
+
+.floating {
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }
+}
+
+/* card leaderboard */
+.card-leaderboard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #92B1DF;
+    background-clip: border-box;
+    border: 8px solid rgb(43,64,131);
+    border-radius: 0.75rem;
+}
+
+.top--29{
+    top: -29px !important;
+}
+
+.text-zero {
+    color: #92B1DF ;
+}
+
+.border-white {
+    border: 3px solid rgb(255, 255, 255);
+}
+
+.bg-point {
+    background-image: url("/assets/img/leaderboard/bgnomer.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.bg-table-wave-long {
+    background-image: url("/assets/img/leaderboard/bglist.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bg-table-wave-long-desktop {
+    background-image: url("/assets/img/leaderboard/bglist.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.bg-table-wave-short {
+    background-image: url("/assets/img/leaderboard/bglistpendek.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bg-table-wave-short-desktop {
+    background-image: url("/assets/img/leaderboard/bglistpendek.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.bg-table-wave-long {
+    background-image: url("/assets/img/leaderboard/bglistpendek.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bg-desktop-leaderboard{
+    background-image: url("/assets/img/gameplay/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-15 {
+    top: 15% !important;
+}

@@ -15,66 +15,76 @@
     </svg>
 
     <div class="vh-100 vw-100 row justify-content-center bg-event-primary m-0">
-        <div class="bg-white col-lg-4 col-12 col-md-5">
-            <div class="vh-100 d-flex justify-content-center align-items-center">
-                <div class="card rounded-3 shadow-lg my-5 bg-event-primary">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    {{-- logo --}}
-                                    <div class="d-flex justify-content-center">
-                                        <img src="https://placehold.co/96x96" alt="logo" width="96" class="mb-3">
-                                    </div>
-                                    {{-- login --}}
-                                    <div class="text-center">
-                                        <h1 class="h4 text-warning mb-4 fw-bold">REGISTER <br> PAMA EVENT</h1>
-                                    </div>
+        <div class="col-lg-4 col-12 col-md-5 p-0">
+            <div class="position-relative">
+                <div class="vh-100 w-100 d-flex justify-content-center align-items-center position-absolute z-20">
+                    <div class="card rounded-3 shadow-lg my-5 bg-event-primary">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="p-5">
+                                        {{-- logo --}}
+                                        <div class="d-flex justify-content-center">
+                                            <img src="https://placehold.co/96x96" alt="logo" width="96" class="mb-3">
+                                        </div>
+                                        {{-- login --}}
+                                        <div class="text-center">
+                                            <h1 class="h4 text-warning mb-4 fw-bold">REGISTER <br> PAMA EVENT</h1>
+                                        </div>
 
-                                    <form class="user" method="POST" action="{{ route('user.register.add') }}">
-                                        @csrf
-                                        {{-- Name --}}
-                                        <div class="form-group mb-3 ">
-                                            <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror rounded-pill"
-                                                   placeholder="Nama" name="name">
-                                            @error('name')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                        <form class="user" method="POST" action="{{ route('user.register.add') }}">
+                                            @csrf
+                                            {{-- Name --}}
+                                            <div class="form-group mb-3 ">
+                                                <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror rounded-pill"
+                                                       placeholder="Nama" name="name">
+                                                @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @endif
                                             </div>
-                                            @endif
-                                        </div>
-                                        {{-- username --}}
-                                        <div class="form-group mb-3">
-                                            <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror rounded-pill"
-                                                   placeholder="Username" name="username">
-                                            @error('username')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                            {{-- username --}}
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror rounded-pill"
+                                                       placeholder="Username" name="username">
+                                                @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @endif
                                             </div>
-                                            @endif
-                                        </div>
-                                        {{-- password --}}
-                                        <div class="form-group mb-3">
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror rounded-pill"
-                                                   placeholder="Password" name="password">
-                                            @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                            {{-- password --}}
+                                            <div class="form-group mb-3">
+                                                <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror rounded-pill"
+                                                       placeholder="Password" name="password">
+                                                @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @endif
                                             </div>
-                                            @endif
-                                        </div>
-                                        {{-- register button --}}
-                                        <div class="d-grid">
-                                            <button class="btn btn-warning btn-user btn-block text-event-primary fw-bold">
-                                                Register
-                                            </button>
-                                        </div>
-                                    </form>
+                                            {{-- register button --}}
+                                            <div class="d-grid">
+                                                <button class="btn btn-warning btn-user btn-block text-event-primary fw-bold">
+                                                    Register
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                {{-- bg --}}
+                <div class="position-absolute">
+                    <img src="{{ asset('assets/img/gameplay/bg.jpg') }}" alt="" class="img-fluid min-vh-100">
+                </div>
+                {{-- parralax effect--}}
+                <div class="position-absolute">
+                    {{--<img src="{{ asset('assets/img/gameplay/bglayer2.png') }}" alt="" class="img-fluid min-vh-100">--}}
                 </div>
             </div>
         </div>
