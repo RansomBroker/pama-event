@@ -59,7 +59,6 @@ class EventController extends Controller
         $userId = Auth::user()->id;
         $data = $request->all();
         $isRedeemCodeExist = RedeemCode::where('user_id', $userId)
-            ->where('code', $request->code)
             ->where('booth_id', $booth->id)
             ->first();
 
@@ -67,15 +66,20 @@ class EventController extends Controller
         if ($isRedeemCodeExist == null) {
             $data['booth_id'] = $booth->id;
             $data['user_id'] = $userId;
-
             $redeemCode->create($data);
+            return redirect()->route('event.booth.redeem.success', $booth->id);
         }
 
-        return redirect()->route('event.booth.redeem.success', $booth->id);
+        return redirect()->route('event.booth.redeem.repeat');
     }
 
     public function boothRedeemSuccess(Booth $booth)
     {
         return view('events.booth_redeem_success', ['booth' => $booth]);
+    }
+
+    public function boothRedeemRepeat()
+    {
+        return view('events.booth_redeem_repeat');
     }
 }

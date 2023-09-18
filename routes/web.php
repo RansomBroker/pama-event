@@ -50,6 +50,7 @@ Route::middleware('auth.check')->group(function () {
         Route::get('/leaderboard', 'leaderboard')->name('leaderboard')->withoutMiddleware('auth.check');
         Route::get('/leaderboard/get', 'leaderboardGet')->name('leaderboard.get')->withoutMiddleware('auth.check');
         Route::get('/leaderboard/user/history/{id}', 'leaderboardUserHistory')->name('leaderboard.user.history')->withoutMiddleware('auth.check');
+        Route::get('/redeem/repeat', 'boothRedeemRepeat')->name('booth.redeem.repeat');
         Route::get('/redeem/{booth}', 'boothRedeemPageView')->name('booth.redeem.view');
         Route::post('/redeem/submit/{booth}', 'boothRedeem')->name('booth.redeem');
         Route::get('/redeem/success/{booth}', 'boothRedeemSuccess')->name('booth.redeem.success');
