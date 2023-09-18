@@ -24,6 +24,16 @@
     <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.screen-bg').css('min-height', (window.innerHeight) + "px")
+            $('.screen').css('max-height', (window.innerHeight) + "px")
+            $(document).on('resize', function () {
+                $('.screen').css('max-height', (window.innerHeight) + "px")
+                $('.screen-bg').css('min-height', (window.innerHeight) + "px")
+            })
+        })
+    </script>
     @yield('custom-js')
 </body>
 </html>

@@ -14,10 +14,10 @@
         </symbol>
     </svg>
 
-    <div class="vh-100 vw-100 row justify-content-center bg-event-primary m-0">
+    <div class="screen vw-100 row justify-content-center bg-event-primary m-0">
         <div class="col-lg-4 col-12 col-md-5 p-0">
             <div class="position-relative">
-                <div class="vh-100 w-100 d-flex justify-content-center align-items-center position-absolute z-20">
+                <div class="screen-bg w-100 d-flex justify-content-center align-items-center position-absolute z-20">
                     <div class="card rounded-3 shadow-lg my-5 bg-event-primary">
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
@@ -67,7 +67,7 @@
                                             </div>
                                             {{-- register button --}}
                                             <div class="d-grid">
-                                                <button class="btn btn-warning btn-user btn-block text-event-primary fw-bold">
+                                                <button class="btn btn-warning btn-user rounded-pill btn-block text-event-primary fw-bold">
                                                     Register
                                                 </button>
                                             </div>
@@ -80,11 +80,11 @@
                 </div>
                 {{-- bg --}}
                 <div class="position-absolute">
-                    <img src="{{ asset('assets/img/gameplay/bg.jpg') }}" alt="" class="img-fluid min-vh-100">
+                    <img src="{{ asset('assets/img/gameplay/bg.jpg') }}" alt="" class="img-fluid screen-bg">
                 </div>
                 {{-- parralax effect--}}
                 <div class="position-absolute">
-                    {{--<img src="{{ asset('assets/img/gameplay/bglayer2.png') }}" alt="" class="img-fluid min-vh-100">--}}
+                    {{--<img src="{{ asset('assets/img/gameplay/bglayer2.png') }}" alt="" class="img-fluid screen">--}}
                 </div>
             </div>
         </div>

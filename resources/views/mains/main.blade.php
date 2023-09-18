@@ -1,11 +1,16 @@
 @extends('master_event')
 @section('title', 'Pama Event')
 @section('content')
-    <div class="vh-100 vw-100 row justify-content-center bg-event-primary m-0">
+    <style>
+        .modal-leaderboard {
+            max-height: 50% !important;
+        }
+    </style>
+    <div class="screen vw-100 row justify-content-center bg-event-primary m-0">
         <div class="col-lg-4 col-12 col-md-5 row p-0">
             <div class="position-relative p-0">
                 {{-- form --}}
-                <div class="min-vh-100 w-100 row col-12 p-0 m-0 position-absolute z-20">
+                <div class="screen-bg w-100 row col-12 p-0 m-0 position-absolute z-20">
                     <div class="col-12 d-flex justify-content-end">
                         <img src="https://placehold.co/64x64" alt="logo" width="64" class="">
                     </div>
@@ -24,11 +29,11 @@
                 </div>
                 {{-- bg --}}
                 <div class="position-absolute">
-                    <img src="{{ asset('assets/img/gameplay/bg.jpg') }}" alt="" class="img-fluid min-vh-100">
+                    <img src="{{ asset('assets/img/gameplay/bg.jpg') }}" alt="" class="img-fluid screen-bg">
                 </div>
                 {{-- parralax effect--}}
                 <div class="position-absolute">
-                    <img src="{{ asset('assets/img/gameplay/bglayer2.png') }}" alt="" class="img-fluid min-vh-100 floating">
+                    <img src="{{ asset('assets/img/gameplay/bglayer2.png') }}" alt="" class="img-fluid screen-bg floating">
                 </div>
             </div>
         </div>
@@ -37,7 +42,7 @@
     <!-- Modal Leaderboard -->
     <div class="modal fade" id="modal-leaderboard" tabindex="-1" aria-labelledby="modal-leaderboard" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content card-leaderboard card-body overflow-visible">
+            <div class="modal-content card-leaderboard card-body overflow-visible modal-leaderboard">
                 {{-- leaderboard img--}}
                 <img src="{{ asset('assets/img/leaderboard/leaderboard.png') }}" class="position-absolute top--29 start-50 translate-middle" alt="" width="256px">
                 {{-- acc --}}
@@ -46,18 +51,20 @@
                     <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
                 </div>
                 {{-- table --}}
-                <table class="table table-striped">
-                    <thead>
+                <div class="table-responsive">
+                    <table class="table table-striped overflow-hidden">
+                        <thead>
                         <tr>
                             <th class="text-center text-white">Nama</th>
                             <th class="text-center text-white">Point</th>
                             <th class="text-center text-white"><span class="text-zero">asdf</span></th>
                         </tr>
-                    </thead>
-                    <tbody class="leaderboard-data">
+                        </thead>
+                        <tbody class="leaderboard-data">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -71,17 +78,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{-- Leaderboard --}}
-                    <table class="table table-hover table-bordered table-striped mt-5" id="modal-table-history">
-                        <thead>
-                        <tr class="text-center">
-                            <th scope="col">History Redeem Booth</th>
-                        </tr>
-                        </thead>
-                        <tbody class="data-history">
+                    <div class="table-responsive">
+                        {{-- Leaderboard --}}
+                        <table class="table table-hover table-bordered table-striped mt-5" id="modal-table-history">
+                            <thead>
+                            <tr class="text-center">
+                                <th scope="col">History Redeem Booth</th>
+                            </tr>
+                            </thead>
+                            <tbody class="data-history">
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -89,7 +98,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Modal Map -->
     <div class="modal fade" id="modal-map" tabindex="-1" aria-labelledby="modal-map" aria-hidden="true">
@@ -115,6 +123,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('custom-js')
     <script>
