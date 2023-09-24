@@ -34,7 +34,7 @@
         <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid p-0">
+            <div class="container-fluid">
 
                 <!-- Page Heading -->
                 @yield('content')
