@@ -26,8 +26,8 @@ Route::middleware('auth.check')->group(function () {
         Route::post('/register/add', 'register')->name('register.add')->withoutMiddleware('auth.check');
         Route::get('/admin/login', 'loginAdminView')->name('login.admin.view')->withoutMiddleware('auth.check');
         Route::post('/admin/login/auth', 'adminAuth')->name('login.admin.process')->withoutMiddleware('auth.check');
-        Route::get('/forgot-password', 'forgotPasswordView')->name('forgot.password.view')->withoutMiddleware('auth.check');
-        Route::post('/forgot-password/reset', 'resetPassword')->name('forgot.password.reset.process')->withoutMiddleware('auth.check');
+        Route::get('/reset-password', 'resetPasswordView')->name('reset.password.view')->withoutMiddleware('auth.check');
+        Route::post('/reset-password/reset', 'resetPassword')->name('reset.password.reset.process')->withoutMiddleware('auth.check');
         Route::post('/logout', 'logout')->name('logout');
         Route::post('/admin/logout', 'logoutAdmin')->name('admin.logout');
     });

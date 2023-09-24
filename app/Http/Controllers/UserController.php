@@ -97,4 +97,36 @@ class UserController extends Controller
         $request->session()->invalidate();
         return redirect()->intended('/admin/login');
     }
+
+    public function resetPasswordView()
+    {
+        return view('auth.reset_password');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validation = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        /* check username */
+        $usernameExist = User::where('username', $validation['username'])->first();
+
+        if ($usernameExist == null) {
+            $request->session()->flash('status', 'danger');
+            $request->session()->flash('message', 'Username tidak ditemukan !');
+            return redirect()->route('user.reset.password.view');
+        }
+
+        $data = $validation;
+        $data['id'] = $usernameExist->id;
+        $data['password'] = bcrypt($validation['password']);
+        $data['role'] = 0;
+        User::where('id', $data['id'])->update($data);
+
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Berhasil reset password, silahkan login kembali');
+        return redirect()->route('user.login.view');
+    }
 }

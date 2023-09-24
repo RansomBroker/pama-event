@@ -1,5 +1,5 @@
 @extends('master_event')
-@section('title', 'Login Pama Event')
+@section('title', 'Reset Password Pama Event')
 @section('content')
 
     {{-- icon --}}
@@ -34,7 +34,8 @@
                                         </div>
                                         {{--login--}}
                                         <div class="text-center">
-                                            <h1 class="h4 text-warning mb-4 fw-bold">LOGIN PAMA EVENT</h1>
+                                            <h1 class="h4 text-warning mb-0 fw-bold">RESET PASSWORD</h1>
+                                            <h1 class="h4 text-warning mb-4 fw-bold">PAMA EVENT</h1>
                                         </div>
 
                                         @if($status = Session::get('status'))
@@ -47,40 +48,39 @@
                                             @endif
                                         @endif
 
-                                        <form class="user" method="POST" action="{{ route('user.login.process') }}">
+                                        <form class="user" method="POST" action="{{ route('user.reset.password.reset.process') }}">
                                             @csrf
 
                                             {{--username--}}
                                             <div class="form-group mb-3">
                                                 <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror rounded-pill"
-                                                       placeholder="Username" name="username">
+                                                       placeholder="Username" name="username" value="{{ old('username') }}" required>
                                                 @error('username')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
-                                                @endif
+                                                @enderror
                                             </div>
 
-                                            {{--password--}}
+                                            {{-- new password --}}
                                             <div class="form-group mb-3">
                                                 <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror rounded-pill"
-                                                       placeholder="Password" name="password">
+                                                       placeholder="Password baru" name="password" required>
                                                 @error('password')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
-                                                @endif
+                                                @enderror
                                             </div>
 
-                                            {{--forget & register--}}
-                                            <div class="text-center mb-3">
-                                                <a class="small text-warning fw-bold" href="{{ route('user.reset.password.view') }}">Lupa Password ?</a>
-                                                <span>|</span>
-                                                <a class="small text-warning fw-bold" href="{{ route('user.register.view') }}">Registrasi Event</a>
+                                            {{-- captcha--}}
+                                            <div class="form-group mb-3">
+                                                <div id="captcha"></div>
                                             </div>
-                                            <div class="d-grid">
-                                                <button class="btn btn-warning rounded-pill btn-user btn-block text-event-primary fw-bold">
-                                                    Login
+
+                                            <div class="d-grid mt-5">
+                                                <button class="btn-submit btn btn-warning rounded-pill btn-user btn-block text-event-primary fw-bold" disabled>
+                                                    Reset Password
                                                 </button>
                                             </div>
                                         </form>
@@ -101,5 +101,30 @@
             </div>
         </div>
     </div>
+@endsection
+@section('custom-js')
+    <script>
+        // ----set-captcha with script
+        var captcha = sliderCaptcha({
+            id: 'captcha',
+            loadingText: 'Loading...',
+            failedText: 'Try again',
+            barText: 'Slide right to fill',
+            width: 242,
+            height: 96,
+            repeatIcon: 'fa fa-redo',
+            onSuccess: function () {
+                /* enable button */
+                $('.btn-submit').prop('disabled', false)
+            },
+            onFail: function () {
+                $('.btn-submit').prop('disabled', true)
+            },
+            onRefresh: function () {
+                $('.btn-submit').prop('disabled', true)
+            }
+        });
+
+    </script>
 @endsection
 
