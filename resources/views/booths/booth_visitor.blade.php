@@ -40,13 +40,12 @@
                         let html = ``;
                         let i = 1;
                         response.forEach((visitor) => {
-                            let date = new Date(visitor.created_at);
                             html += `
                                 <tr>
                                     <td>${i++}</td>
                                     <td>${visitor.user.name}</td>
                                     <td>${visitor.code}</td>
-                                    <td>${date.toISOString().split('T')[0] + " " + date.toTimeString().split(' ')[0] }</td>
+                                    <td>${visitor.created_at}</td>
                                 </tr>
                             `;
                         })
