@@ -15,7 +15,6 @@
 </head>
 
 <body id="page-top">
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -34,7 +33,7 @@
         <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid @if(Route::is('user.login.admin.view')) p-0 @endif">
 
                 <!-- Page Heading -->
                 @yield('content')
