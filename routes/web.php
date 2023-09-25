@@ -35,6 +35,7 @@ Route::middleware('auth.check')->group(function () {
     Route::middleware('admin.check')->group(function () {
         Route::controller(AdminController::class)->name('admin.')->group(function () {
             Route::get('/admin' ,'dashboard')->name('dashboard');
+            Route::get('/admin/get/user-redeem', 'getUserRedeem')->withoutMiddleware(['auth.check', 'admin.check']);
             /* handle kelola booth*/
             Route::get('/admin/booth', 'boothView')->name('booth.view');
             Route::get('/admin/booth/add', 'boothAddView')->name('booth.add.view');
@@ -62,6 +63,7 @@ Route::middleware('auth.check')->group(function () {
 // booth controller
 Route::controller(BoothController::class)->name('booth.')->group(function () {
     Route::get('/booth/{booth}', 'boothVisitorView')->name('visitor.view');
+    Route::get('/booth/get/redeem/{booth}', 'boothVisitorGetRedeem')->name('visitor.get.redeem');
 });
 
 

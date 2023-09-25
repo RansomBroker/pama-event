@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booth;
+use App\Models\RedeemCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -59,5 +60,10 @@ class AdminController extends Controller
         $request->session()->flash('status', 'success');
         $request->session()->flash('message', 'Berhasil menghapus booth');
         return redirect()->route('admin.booth.view');
+    }
+
+    public function getUserRedeem(RedeemCode $redeemCode)
+    {
+        return response()->json($redeemCode->get()->count());
     }
 }
