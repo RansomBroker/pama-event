@@ -4,6 +4,8 @@
     <meta charset="utf-8">
 
     <title>The AR Journey</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
@@ -37,5 +39,35 @@
     </a-marker>
     <a-entity camera></a-entity>
 </a-scene>
+
+<!-- Modal Hint -->
+<div class="modal fade" id="modal-hint" tabindex="-1" aria-labelledby="modal-hint" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content card-leaderboard card-body overflow-visible modal-leaderboard">
+            {{-- acc --}}
+            <div class="w-100 d-flex justify-content-between mb-3">
+                <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
+                <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
+            </div>
+            {{-- hint --}}
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <p class="text-center text-white fw-bold fs-5">Scan gambar untuk memenangkan hadiah</p>
+                <button class="btn btn-warning text-event-primary fw-bold rounded-pill" data-bs-dismiss="modal"><span class="px-5">Ok</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        let modalHint = new bootstrap.Modal(document.getElementById('modal-hint'), {
+            keyboard: false
+        })
+
+        modalHint.show();
+    })
+</script>
 </body>
 </html>
