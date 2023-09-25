@@ -11,7 +11,12 @@ class BoothController extends Controller
     public function boothVisitorView($booth)
     {
         $boothData = Booth::where('slug', $booth)->first();
-        $redeemData = RedeemCode::with(['user', 'booth'])->where('booth_id', $boothData->id)->get()->sortBy('created_at');
-        return view('booths.booth_visitor', ['booth' => $boothData, 'redeemData' => $redeemData]);
+        return view('booths.booth_visitor', ['booth' => $boothData]);
+    }
+
+    public function boothVisitorGetRedeem(Booth $booth)
+    {
+        $redeemData = RedeemCode::with(['user', 'booth'])->where('booth_id', $booth->id)->get()->sortByDesc('created_at');
+        return response()->json($redeemData->values());
     }
 }
