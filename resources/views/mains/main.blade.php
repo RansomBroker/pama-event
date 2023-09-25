@@ -6,12 +6,13 @@
             max-height: 50% !important;
         }
     </style>
+    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
     <div class="screen vw-100 row justify-content-center bg-event-primary m-0">
         <div class="col-lg-4 col-12 col-md-5 row p-0">
             <div class="position-relative p-0">
                 {{-- form --}}
                 <div class="screen-bg w-100 row col-12 p-0 m-0 position-absolute z-20">
-                    <div class="col-12 d-flex justify-content-end">
+                    <div class="col-12 d-flex justify-content-end align-self-start">
                         <img src="https://placehold.co/64x64" alt="logo" width="64" class="">
                     </div>
                     {{-- logo & text --}}
@@ -50,20 +51,48 @@
                     <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
                     <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
                 </div>
-                {{-- table --}}
-                <div class="table-responsive">
-                    <table class="table table-striped overflow-hidden">
-                        <thead>
-                        <tr>
-                            <th class="text-center text-white">Nama</th>
-                            <th class="text-center text-white">Point</th>
-                            <th class="text-center text-white"><span class="text-zero">asdf</span></th>
-                        </tr>
-                        </thead>
-                        <tbody class="leaderboard-data">
+                {{-- tab --}}
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-my-rank-tab" data-bs-toggle="tab" data-bs-target="#nav-my-rank" type="button" role="tab" aria-controls="nav-my-rank" aria-selected="true">My Point</button>
+                        <button class="nav-link" id="nav-leaderboard-tab" data-bs-toggle="tab" data-bs-target="#nav-leaderboard" type="button" role="tab" aria-controls="nav-leaderboard" aria-selected="false">Leaderboard</button>
+                    </div>
+                </nav>
+                <div class="tab-content overflow-auto" id="nav-tabContent">
+                    <div class="tab-pane fade show active fw-bold" id="nav-my-rank" role="tabpanel" aria-labelledby="nav-my-rank-tab">
+                        {{-- table --}}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="text-center text-white">Nama</th>
+                                    <th class="text-center text-white">Point</th>
+                                    <th class="text-center text-white"><span class="text-zero">asdf</span></th>
+                                </tr>
+                                </thead>
+                                <tbody class="rank-data">
 
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade fw-bold" id="nav-leaderboard" role="tabpanel" aria-labelledby="nav-leaderboard-tab">
+                        {{-- table --}}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="text-center text-white">Nama</th>
+                                    <th class="text-center text-white">Point</th>
+                                    <th class="text-center text-white"><span class="text-zero">asdf</span></th>
+                                </tr>
+                                </thead>
+                                <tbody class="leaderboard-data">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,18 +123,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Map -->
-    <div class="modal fade" id="modal-map" tabindex="-1" aria-labelledby="modal-map" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-            <div class="modal-content overflow-visible">
-                <button type="button" class="btn btn-warning rounded-circle position-absolute top-0 start-100 translate-middle-close z-index-100" data-bs-dismiss="modal" aria-label="Close"><i class='fw-bold bx bx-x'></i></button>
-                <div class="modal-body p-0">
-                    <img src="{{ asset('assets/img/map.png') }}" alt="logo" class="w-100 vh-100">
                 </div>
             </div>
         </div>
@@ -180,6 +197,32 @@
                 })
             }
             setTimeout(leaderboard, 1000);
+
+            /* get new rank */
+            function myRank() {
+                let userID = $('input[name=user_id]').val();
+                $.ajax({
+                    url: '/leaderboard/user/rank/' + userID,
+                    success: function (data) {
+                        let html = ``;
+                        html +=`
+                                   <tr>
+                                       <td class="text-white fw-bold border-white bg-table-wave-long-desktop">
+                                            <span class="text-white px-3 pt-2 pb-3 fw-bold bg-point me-2">${data.rank}</span>
+                                            ${data.user.name}
+                                       </td>
+                                       <td class="text-center text-white border-white bg-table-wave-short-desktop">${data.point} <img src="{{ asset('assets/img/leaderboard/diamond.png') }}" alt="" width="18px"></td>
+                                       <td class="text-center border-white bg-table-wave-long-desktop"><button class="btn-history btn bg-event-primary text-warning" data-id="${data.user.id}">Riwayat</button></td>
+                                   </tr>
+                                `
+                        $('.rank-data').html(html)
+                    },
+                    complete: function (data) {
+                        setTimeout(myRank, 1000);
+                    }
+                })
+            }
+            setTimeout(myRank, 1000);
         })
     </script>
 @endsection

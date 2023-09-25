@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booth;
 use App\Models\RedeemCode;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,13 +27,45 @@ class EventController extends Controller
         $sortedLeaderBoards = $leaderboardGroup->sortByDesc(function ($data) {
             return count($data);
         });
-        $leaderboards = [];
-        $i = 0;
-        foreach ($sortedLeaderBoards as $leaderboard) {
-            $leaderboards[$i] = $leaderboard;
-            $i++;
+
+        return response()->json($sortedLeaderBoards->values());
+    }
+
+    public function userRank(User $user)
+    {
+        // check if user was redeem
+        $userRedeem = RedeemCode::where('user_id', $user->id)->first();
+        $rank = "N/A";
+        $point = 0;
+
+        if ($userRedeem != null) {
+            // calculate rank
+            $leaderboardCollection = collect(RedeemCode::with(['user', 'booth'])->get());
+            $leaderboardGroup = $leaderboardCollection->groupBy('user_id');
+            $sortedLeaderBoards = $leaderboardGroup->sortByDesc(function ($data) {
+                return count($data);
+            })->values();
+
+            $i = 1;
+            foreach ($sortedLeaderBoards as $leaderboard) {
+                if ($leaderboard[0]->user_id == $user->id) {
+                    $rank = $i;
+                    break;
+                } else {
+                    $rank = $i++;
+                }
+            }
+
+            //calculate point
+            $point = RedeemCode::where('user_id', $user->id)->get()->count();
         }
-        return response()->json($leaderboards);
+
+        $data = [];
+        $data['rank'] = $rank;
+        $data['point'] = $point;
+        $data['user'] = $user;
+
+        return response()->json($data);
     }
 
     public function leaderboard()
