@@ -2,7 +2,12 @@
 @section('title', 'Pama Event')
 @section('content')
     <div class="min-vh-100 container-fluid m-0 p-0 row justify-content-center">
-        <div class="col-lg-8 col-12 col-md-8 d-flex justify-content-center position-absolute top-15 start-50 translate-middle-x">
+        <div class="position-relative position-absolute top-0 start-0 w-100 p-0">
+            <div class="menu w-100 d-flex justify-content-start">
+                <button class="btn-full btn btn-primary btn-sm" type="button"><i class="bx bx-fullscreen"></i></button>
+            </div>
+        </div>
+        <div class="col-lg-10 col-12 col-md-8 d-flex justify-content-center position-absolute top-15 start-50 translate-middle-x">
             <div class="w-100 card-leaderboard card-body overflow-visible">
                 {{-- leaderboard img--}}
                 <img src="{{ asset('assets/img/leaderboard/leaderboard.png') }}" class="position-absolute top--29 start-50 translate-middle" alt="" width="256px">
@@ -113,6 +118,45 @@
                 })
             }
             setTimeout(leaderboard, 1000);
+
+
+            /* full screen */
+            function openfullscreen() {
+                let elem = document.documentElement;
+                // Trigger fullscreen
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+            }
+
+            function closefullscreen() {
+                let elem = document.documentElement;
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    /* IE11 */
+                    document.msExitFullscreen();
+                }
+            }
+
+            let toggleBtn = false;
+            $(".btn-full").on("click", function () {
+                toggleBtn = !toggleBtn;
+                if (toggleBtn) {
+                    openfullscreen();
+                } else {
+                    closefullscreen();
+                }
+            });
         })
     </script>
 @endsection
