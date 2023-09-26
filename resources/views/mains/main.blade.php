@@ -101,12 +101,12 @@
     {{-- modal history--}}
     <div class="modal fade" tabindex="-1" id="history">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content" style="height: 80vh">
                 <div class="modal-header">
                     <h5 class="modal-title">History Redeem <span class="history-name">{name}</span></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body vh-100 overflow-auto">
                     <div class="table-responsive">
                         {{-- Leaderboard --}}
                         <table class="table table-hover table-bordered table-striped mt-5" id="modal-table-history">
