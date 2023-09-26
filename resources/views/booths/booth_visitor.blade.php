@@ -8,9 +8,10 @@
 @endsection
 @section('content')
     <input type="hidden" name="booth-id" value="{{ $booth->id }}">
+    <input type="hidden" name="booth-name" value="{{ $booth->name }}">
     <h2>Data Redeem</h2>
     <div class="card card-body">
-
+        <button class="btn btn-success w-25" onclick="ExportToExcel('xlsx')">Download .xslx</button>
         <div class="my-2 table-responsive">
             <table class="table table-striped table-hover text-nowrap w-100" id="table-visitor-redeem">
                 <thead>
@@ -30,8 +31,15 @@
 @endsection
 @section('custom-js')
     <script>
+        function ExportToExcel(type, fn, dl)  {
+            let booth = $('input[name=booth-name]').val()
+            let elt = document.getElementById('table-visitor-redeem');
+            let wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+                XLSX.writeFile(wb, fn || ('Export Booth '+ booth + ' .' + (type || 'xlsx')));
+        }
         $(document).ready(function() {
-
             function getBoothVisitorData() {
                 let boothId = $('input[name=booth-id]').val();
                 $.ajax({

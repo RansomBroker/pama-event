@@ -11,6 +11,7 @@
     <title>@yield('title')</title>
 
     @include('includes.admins.css')
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
 </head>
 
