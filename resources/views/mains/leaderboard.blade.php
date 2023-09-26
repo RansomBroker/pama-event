@@ -1,14 +1,14 @@
 @extends('master_event')
 @section('title', 'Pama Event')
 @section('content')
-    <div class="min-vh-100 container-fluid m-0 p-0 row justify-content-center">
+    <div class="container-fluid m-0 p-0 row justify-content-center">
         <div class="position-relative position-absolute top-0 start-0 w-100 p-0">
             <div class="menu w-100 d-flex justify-content-start">
                 <button class="btn-full btn btn-primary btn-sm" type="button"><i class="bx bx-fullscreen"></i></button>
             </div>
         </div>
         <div class="col-lg-10 col-12 col-md-8 d-flex justify-content-center position-absolute top-15 start-50 translate-middle-x">
-            <div class="w-100 card-leaderboard card-body overflow-visible">
+            <div class="w-100 card-leaderboard card-body overflow-visible" style="height: 80vh">
                 {{-- leaderboard img--}}
                 <img src="{{ asset('assets/img/leaderboard/leaderboard.png') }}" class="position-absolute top--29 start-50 translate-middle" alt="" width="256px">
                 {{-- acc --}}
@@ -17,18 +17,20 @@
                     <img src="{{ asset('assets/img/leaderboard/hiasanpojokbg.png') }}" alt="" width="24px">
                 </div>
                 {{-- table --}}
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="text-center text-white">Nama</th>
-                        <th class="text-center text-white">Point</th>
-                        <th class="text-center text-white"><span class="text-zero">asdf</span></th>
-                    </tr>
-                    </thead>
-                    <tbody class="leaderboard-data">
+                <div class="vh-100 overflow-auto">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="text-center text-white">Nama</th>
+                            <th class="text-center text-white">Point</th>
+                            <th class="text-center text-white"><span class="text-zero">asdf</span></th>
+                        </tr>
+                        </thead>
+                        <tbody class="leaderboard-data">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
